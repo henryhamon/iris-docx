@@ -3,14 +3,14 @@ Class dc.docx.Sample
 
 Parameter YOURPATH = "/irisrun/repo/assets/";
 
-ClassMethod getp(Output path As %String)
-{
-    Set path = ..#YOURPATH
-}
-
 ClassMethod CreateDocument()
 {
     Do ..Create(..#YOURPATH)
+}
+
+ClassMethod ReadTale()
+{
+    Do ..DogsTale(..#YOURPATH)
 }
 
 ClassMethod ReadDocument()
@@ -82,6 +82,17 @@ ClassMethod Create(path As %String) [ Language = python ]
         row_cells[3].text = str(df['desc'][idx])
 
     document.save(path + "document.docx")
+}
+
+ClassMethod DogsTale(path As %String) [ Language = python ]
+{
+    from docx import Document
+    doc = Document(path + "dogs_tale.docx")
+
+    fulltext = []
+    for p in doc.paragraphs:
+        fulltext.append(p.text)
+    print(fulltext)
 }
 
 ClassMethod Read(path As %String) [ Language = python ]
