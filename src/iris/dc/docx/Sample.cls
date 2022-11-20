@@ -89,6 +89,15 @@ ClassMethod DogsTale(path As %String) [ Language = python ]
     from docx import Document
     doc = Document(path + "dogs_tale.docx")
 
+    print(len(doc.paragraphs))
+
+    p = doc.paragraphs[2]
+    for run in p.runs:
+        aux = ''
+        if (run.bold): aux = '// has Bold style'
+        if (run.italic): aux = '// has Italic style'
+        print(run.text, aux + '\n')
+
     fulltext = []
     for p in doc.paragraphs:
         fulltext.append(p.text)
