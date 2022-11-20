@@ -3,7 +3,7 @@
   <Document name="dc-iris-docx.ZPM">
     <Module>
       <Name>dc-iris-docx</Name>
-      <Version>1.0.4</Version>
+      <Version>1.0.5</Version>
       <Description>Sample how to create and read MS word document with embedded python</Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src/iris</SourcesRoot>
