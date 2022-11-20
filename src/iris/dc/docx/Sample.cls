@@ -42,8 +42,8 @@ ClassMethod Create(path As %String) [ Language = python ]
     font_charstyle = font_styles.add_style('customStyle', WD_STYLE_TYPE.CHARACTER)
     font_object = font_charstyle.font
     font_object.size = Pt(15)
+    font_object.name = 'Book Antiqua'
     run = paragraph.add_run('In the Land of Sprinkles where the sweetness lie','customStyle')
-    run.font.name = 'Book Antiqua'
 
     steps = dict(coating = ['Powndered Sugar', 'Glazed', 'Chocolate Icing'],
         topping = ['Sprinkles Rainbow','Chopped Peanuts'],
