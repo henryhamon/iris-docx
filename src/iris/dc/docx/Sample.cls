@@ -18,6 +18,11 @@ ClassMethod ReadDocument()
     Do ..Read(..#YOURPATH)
 }
 
+ClassMethod TemplateDocument()
+{
+    Do ..Template(..#YOURPATH)
+}
+
 ClassMethod Create(path As %String) [ Language = python ]
 {
     from docx import Document
@@ -128,6 +133,32 @@ ClassMethod Read(path As %String) [ Language = python ]
                     continue
                 data[cols[col]].append(text)
     print(data)
+}
+
+ClassMethod Template(path As %String) [ Language = python ]
+{
+    import re 
+    from docx import Document 
+    
+    def docx_replace_regex(doc_obj, regex, dict): 
+        for p in doc_obj.paragraphs: 
+            for r in p.runs:
+                arr = regex.findall(r.text)
+                for word in arr:
+                    r.text = r.text.replace('{'+word+'}', dict[word])
+    
+    dict = {"company_name": "Mordor co",
+        "name": "Saruman the White",
+        "employee_name": "Radagast the Brown",
+        "employee_job_title": "magician",
+        "job_title": "wizard",
+        "quality": "wise",
+        "recipient_name": "Gandalf the Gray"
+        }
+    regex1 = re.compile(r"\{(.*?)\}") 
+    doc = Document(path + "template.docx")
+    docx_replace_regex(doc, regex1, dict) 
+    doc.save(path + 'result1.docx')
 }
 
 }
