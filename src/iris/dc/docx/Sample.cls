@@ -145,7 +145,7 @@ ClassMethod Template(path As %String) [ Language = python ]
             for r in p.runs:
                 arr = regex.findall(r.text)
                 for word in arr:
-                    r.text = r.text.replace('{'+word+'}', dict[word])
+                    r.text = r.text.replace('{{'+word+'}}', dict[word])
     
     dict = {"company_name": "Mordor co",
         "name": "Saruman the White",
@@ -155,7 +155,7 @@ ClassMethod Template(path As %String) [ Language = python ]
         "quality": "wise",
         "recipient_name": "Gandalf the Gray"
         }
-    regex1 = re.compile(r"\{(.*?)\}") 
+    regex1 = re.compile(r"\{\{(.*?)\}\}") 
     doc = Document(path + "template.docx")
     docx_replace_regex(doc, regex1, dict) 
     doc.save(path + 'result1.docx')
